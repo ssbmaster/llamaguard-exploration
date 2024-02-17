@@ -63,15 +63,16 @@ dataset_paths = [
 
 # %%
 # Run through the datasets
+prompts = []
 for path in dataset_paths:
-    for parent in path.parents:
-        if parent.name == "toxigen":
-            prompts = [l.strip() for l in open("prompts/toxigen/neutral_lgbtq_1k.txt").readlines()]
-            break
-        elif parent.name == "trustllm":
-            prompts = read_trustllm_as_list("prompts/trustllm/safety/jailbreak.json")
-            break
+    path_components = path.parts
+    if "toxigen" in path_components:
+        prompts = [l.strip() for l in open("prompts/toxigen/neutral_lgbtq_1k.txt").readlines()]
+    elif "trustllm" in path_components:
+        prompts = read_trustllm_as_list("prompts/trustllm/safety/jailbreak.json")
     if prompts:
         analyze(prompts)
+    else:
+        print("No valid prompt folder provided")
         
 # %%
