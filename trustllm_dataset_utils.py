@@ -8,5 +8,5 @@ def load_json(file_path) -> list[dict[str, str | list[str]]]:
     with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
     
-def read_as_list(file_path):
+def read_trustllm_as_list(file_path):
     return json_to_list(load_json(file_path))
