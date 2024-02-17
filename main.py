@@ -73,56 +73,5 @@ for path in dataset_paths:
             break
     if prompts:
         analyze(prompts)
-# %%
-# Load prompts
-prompts = [l.strip() for l in open("prompts/toxigen/neutral_lgbtq_1k.txt").readlines()]
-print(f"Number of prompts: {len(prompts)}")
-
-# %%
-# Analyze the prompts
-results = []
-for prompt in tqdm(prompts[:50], desc="Analyze Progress"):
-    results.append(moderate([{"role": "user", "content": prompt}]))
-
-# %%
-# Clean up the results
-results_cleaned = []
-for r in results:
-    results_cleaned.append(r.splitlines()[0])
-
-# %%
-# Display
-print(results_cleaned)
-
-# %%
-# Break down the results
-for key, value in Counter(results_cleaned).items():
-    print(f"Number of {key}: {value}")
-
-# %%
-# TrustLLM dataset load
-prompts = read_trustllm_as_list("prompts/trustllm/safety/jailbreak.json")
-print(f"Number of prompts: {len(prompts)}")
-
-# %%
-# Analyze the prompts
-results = []
-for prompt in tqdm(prompts[:50], desc="Analyze Progress"):
-    results.append(moderate([{"role": "user", "content": prompt}]))
-
-# %%
-# Clean up the results
-results_cleaned = []
-for r in results:
-    results_cleaned.append(r.splitlines()[0])
-
-# %%
-# Display
-print(results_cleaned)
-
-# %%
-# Break down the results
-for key, value in Counter(results_cleaned).items():
-    print(f"Number of {key}: {value}")
-
+        
 # %%
