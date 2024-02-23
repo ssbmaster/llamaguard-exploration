@@ -92,7 +92,7 @@ result = moderate(
         },
     ]
 )  # `safe`
-print("Teset result:", result)
+print("Test result:", result)
 
 # %%
 dataset_paths = [
@@ -118,7 +118,7 @@ for dataset_path in dataset_paths:
         prompts = json_to_list(dataset)
     if prompts:
         print("Analyzing dataset at", dataset_path)
-        safety_classifications = analyze(prompts[:1])
+        safety_classifications = analyze(prompts)
         for orig_data, safety_classification in zip(dataset, safety_classifications):
             orig_data["safety_classification"] = safety_classification
         save_to_excel(dataset_path, dataset)
